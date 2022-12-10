@@ -3,7 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function AddTodo({ onAdd }) {
   const [title, setTitle] = useState('');
-  const handleChange = (e) => setTitle(e.target.value);
+  const inputRef = useRef();
+  const handleChange = (e) => {
+    setTitle(e.target.value);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.trim() === '') return;
@@ -14,12 +17,13 @@ export default function AddTodo({ onAdd }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Todo</label>
+        <label htmlFor="title">Todo : </label>
         <input
           type="text"
           id="title"
           placeholder="Add Todo"
           value={title}
+          ref={inputRef}
           onChange={handleChange}
         />
         <button type="submit">Add</button>
