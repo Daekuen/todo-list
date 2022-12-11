@@ -10,10 +10,8 @@ export function DarkModeProvider({ children }) {
   };
 
   useEffect(() => {
-    const isDark =
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDark = localStorage.theme === 'dark' || !('theme' in localStorage);
+
     setDarkMode(isDark);
     updateDarkMode(isDark); // HTML에 className을 추가하고, localStorage에 theme 상태값 저장.
   }, []);
